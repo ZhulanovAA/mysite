@@ -23,6 +23,11 @@ class Post(models.Model):
     date_updated = models.DateTimeField('дата последнего изменения')
     tags = models.ManyToManyField(Tag, blank=True, verbose_name='теги')
 
+    class Meta:
+        verbose_name = 'запись'
+        verbose_name_plural = 'записи'
+        ordering = ['-date_published']
+
     def save(self, *args, **kwargs):
         if not self.id:
             self.date_published = now()
@@ -34,12 +39,15 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, models.CASCADE, 'comments')
+    post = models.ForeignKey(Post, models.CASCADE, 'comments', verbose_name='запись')
     author = models.ForeignKey(User, verbose_name='автор')
-    text = models.TextField(max_length='500')
-    date_created = models.DateTimeField()
+    text = models.TextField('Текст', max_length='500')
+    date_created = models.DateTimeField('дата создания')
     date_updated = models.DateTimeField('дата последнего изменения')
-    approved_comment = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'коментарий'
+        verbose_name_plural = 'коментарии'
 
     def save(self, *args, **kwargs):
         if not self.id:

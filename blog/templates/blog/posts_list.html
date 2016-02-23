@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Блог Андрея Жуланова{% endblock %}
+
+{% block header %}
+    <h1>Блог</h1>
+{% endblock %}
+
+{% block content %}
+  <ul class="list-unstyled">
+  {% for post in posts %}
+    <li class="paper-card">{% include "blog/post_short_info.html" %}</li>
+  {% empty %}
+    <li>Нет записей</li>
+  {% endfor %}
+  </ul>
+{% endblock %}

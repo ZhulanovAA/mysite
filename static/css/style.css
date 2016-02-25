@@ -1,8 +1,9 @@
 body {
     margin: 0;
     padding-top: 60px;
+    background-color: #FAFAFA;
     font-size: 1em;
-    font-family: sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 body > header {
@@ -10,7 +11,7 @@ body > header {
     top: 0;
     left: 0;
     z-index: 100;
-    padding: 0 5px;
+    padding: 0 30px;
     width: 100%;
     height: 60px;
     background-color: #388E3C;
@@ -25,6 +26,7 @@ body > header h1 {
 }
 
 body > footer {
+    padding-bottom: 0.5em;
     text-align: center;
     font-size: 0.85em;
 }
@@ -32,8 +34,21 @@ body > footer {
 body > footer hr {
 	border: 0;
 	border-bottom: 1px solid grey;
-	margin: 1em auto;
-	width: 70%;
+	margin: 0.5em auto;
+	width: 60%;
+}
+
+body > main {
+    width: 60%;
+    margin: 0 auto;
+}
+
+body > aside {
+    position: fixed;
+    top: 60px;
+    right: 2.5%;
+    width: 15%;
+    text-align: right;
 }
 
 .list-unstyled {
@@ -47,8 +62,8 @@ body > footer hr {
 .paper-card {
     display: block;
     position: relative;
-    width: 70%;
-    margin: 20px auto;
+    width: 100%;
+    margin: 20px 0;
     padding: 10px;
     padding-bottom: 5px;
     border: 0px solid black;
@@ -70,6 +85,7 @@ body > footer hr {
     width: 100%;
     text-align: right;
     font-size: 0.85em;
+    color: grey;
 }
 
 .tag {

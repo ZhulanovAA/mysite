@@ -6,6 +6,6 @@
   {% endfor %}
 {% endif %}
 <div class="info">
-    <a class="author" href="#">{{ post.author.username }}</a>
+    <a class="author" href="{% url 'user_info' post.author.username %}">{{ post.author.username }}</a>
     <span class="date-published">{{ post.date_published }}</span>
 </div>

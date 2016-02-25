@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load blog_tags%}
 
 {% block title %}Блог Андрея Жуланова{% endblock %}
 
@@ -7,11 +8,21 @@
 {% endblock %}
 
 {% block content %}
-  <ul class="list-unstyled">
-  {% for post in posts %}
-    <li class="paper-card">{% include "blog/post_short_info.html" %}</li>
-  {% empty %}
-    <li>Нет записей</li>
-  {% endfor %}
-  </ul>
+    <ul class="list-unstyled">
+    {% for post in posts %}
+        <li class="paper-card">{% include "blog/post_short_info.html" %}</li>
+    {% empty %}
+        <li>Нет записей</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block aside %}
+    <aside>
+        <div class="paper-card">
+            <ul class="list-unstyled">
+                {% tagcloud %}
+            </ul>
+        </div>
+    </aside>
 {% endblock %}

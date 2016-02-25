@@ -6,10 +6,14 @@
     <meta name="author" content="Andrey Zhulanov">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 </head>
 <body>
     <header>{% block header %}{% endblock %}</header>
-    {% block content %}{% endblock %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    {% block aside %}{% endblock %}
     <footer>
         <hr>
         Andrey Zhulanov 2016

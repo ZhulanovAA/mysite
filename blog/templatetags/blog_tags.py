@@ -13,7 +13,7 @@ register = template.Library()
 def tagcloud(user=None):
     filters = {}
     if user:
-        url = reverse('user_info', username=user.username)
+        url = reverse('user_info', args=[user.username])
         filters = {'post__author__username': user.username}
     else:
         url = reverse('posts_list')

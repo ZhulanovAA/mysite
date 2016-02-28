@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% load blog_tags%}
 
-{% block title %}Блог Андрея Жуланова{% endblock %}
+{% block title %}Запись пользователя {{ post.author.username }}{% endblock %}
 
 {% block header %}
-    <span>Запись пользователя {{ post.owner }}</span>
+    <span>Запись пользователя {{ post.author.username }}</span>
 {% endblock %}
 
 {% block content %}

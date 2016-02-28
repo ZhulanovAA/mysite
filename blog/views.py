@@ -18,7 +18,7 @@ def user_info(request, username):
     if request.GET.get('tag'):
         posts = posts.filter(tags__name=request.GET['tag'])
     context = {'posts': posts, 'observed_user': user}
-    return render(request, 'blog/posts_list.html', context)
+    return render(request, 'blog/user_info.html', context)
 
 
 def post_page(request, post_pk):

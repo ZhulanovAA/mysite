@@ -16,7 +16,7 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey(User, verbose_name='автор')
+    author = models.ForeignKey(User, related_name='posts', verbose_name='автор')
     title = models.CharField(max_length=200, verbose_name='заголовок')
     text = models.TextField('текст')
     date_published = models.DateTimeField('дата публикации')
@@ -40,7 +40,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, models.CASCADE, 'comments', verbose_name='запись')
-    author = models.ForeignKey(User, verbose_name='автор')
+    author = models.ForeignKey(User, related_name='comments', verbose_name='автор')
     text = models.TextField('Текст', max_length='500')
     date_created = models.DateTimeField('дата создания')
     date_updated = models.DateTimeField('дата последнего изменения')

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load blog_tags%}
+
+{% block title %}Блог Андрея Жуланова{% endblock %}
+
+{% block header %}
+    <span>Запись пользователя {{ post.owner }}</span>
+{% endblock %}
+
+{% block content %}
+    <div class="paper-card">
+        <h1><a href="{% url 'post_page' post.pk %}">{{ post.title }}</a></h1>
+        <p>{{ post.text }}</p>
+        {% if post.tags.count %}
+            {% for tag in post.tags.all %}
+                <span class="tag">{{ tag }}</span>
+            {% endfor %}
+        {% endif %}
+        <div class="info">
+            <a class="author" href="{% url 'user_info' post.author.username %}">{{ post.author.username }}</a>
+            <span class="date-published">{{ post.date_published }}</span>
+        </div>
+    </div>
+    {% if post.comments.all %}
+        {% for comment in post.comments.all %}
+            <p>{{ comment.author }}: {{ comment.text }}</p>
+        {% endfor %}
+    {% else %}
+        <p>Коментариев пока нет</p>
+    {% endif %}
+{% endblock %}

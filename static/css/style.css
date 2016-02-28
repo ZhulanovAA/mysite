@@ -25,6 +25,21 @@ body > header h1 {
     vertical-align: 50%;
 }
 
+body > header span {
+    line-height: 60px;
+    margin: 0px;
+    vertical-align: 50%;
+}
+
+body > header span:first-of-type {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+body > header > span.title {
+
+}
+
 body > footer {
     padding-bottom: 0.5em;
     text-align: center;
@@ -62,6 +77,8 @@ body > aside {
 .paper-card {
     display: block;
     position: relative;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     width: 100%;
     margin: 20px 0;
     padding: 10px;
@@ -72,7 +89,8 @@ body > aside {
     overflow-wrap: break-word;
 }
 
-.paper-card h2 {
+.paper-card h2, .paper-card h1{
+    font-size: 1.5em;
     color: #43A047
 }
 

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {% if create %}Создание{% else %}Редактирование{% endif %} записи
+{% endblock %}
+
+{% block header %}
+    <h1>{% if create %}Создание{% else %}Редактирование{% endif %} записи</h1>
+{% endblock %}
+
+{% block content %}
+    {% if create %}
+        {% url "post_create" as action_url %}
+    {% else %}
+        {% url "post_edit" post_pk=form.instance.pk as action_url %}
+    {% endif %}
+    <form action="{{ action_url }}" method="post" accept-charset="utf-8">
+        {{ form }}
+        {% csrf_token %}
+        <p><input type="submit" value="Сохранить"></p>
+    </form>
+{% endblock %}

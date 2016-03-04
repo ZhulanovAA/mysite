@@ -29,9 +29,9 @@ class Post(models.Model):
         ordering = ['-date_published']
 
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.date_published = now()
         self.date_updated = now()
+        if not self.id:
+            self.date_published = self.date_updated
         super(Post, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -50,9 +50,9 @@ class Comment(models.Model):
         verbose_name_plural = 'коментарии'
 
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.date_created = now()
         self.date_updated = now()
+        if not self.id:
+            self.date_created = self.date_updated
         super(Comment, self).save(*args, **kwargs)
 
     def __str__(self):

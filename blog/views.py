@@ -1,6 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, render
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404, redirect, render
 
+from .forms import PostForm
 from .models import Post
 
 
@@ -25,3 +28,39 @@ def post_page(request, post_pk):
     post = get_object_or_404(Post, pk=post_pk)
     context = {'post': post}
     return render(request, 'blog/post_page.html', context)
+
+
+@login_required
+def post_create(request):
+    if request.method == 'POST':
+        if request.user.has_perm('blog.add_post'):
+            raise PermissionDenied
+        form = PostForm(data=request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            form.save_m2m()
+            return redirect('post_page',
+                            post_pk=post.pk)
+    else:
+        form = PostForm()
+    context = {'form': form, 'create': True}
+    return render(request, 'blog/form.html', context)
+
+
+@login_required
+def post_edit(request, post_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    if post.author != request.user and not request.user.has_perm('blog.change_post'):
+        raise PermissionDenied
+    if request.method == 'POST':
+        form = PostForm(instance=post, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('post_page',
+                            post_pk=post.pk)
+    else:
+        form = PostForm(instance=post)
+    context = {'form': form, 'create': False}
+    return render(request, 'blog/form.html', context)

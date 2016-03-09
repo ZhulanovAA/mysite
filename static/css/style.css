@@ -12,32 +12,20 @@ body > header {
     left: 0;
     z-index: 100;
     padding: 0 30px;
-    width: 100%;
     height: 60px;
-    background-color: #388E3C;
+    width: 100%;
+    background-color: #1976D2;
     color: white;
     box-shadow: 0px 0px 10px gray;
 }
 
-body > header h1 {
+body > header .title {
     line-height: 60px;
     margin: 0px;
     vertical-align: 50%;
-}
-
-body > header span {
-    line-height: 60px;
-    margin: 0px;
-    vertical-align: 50%;
-}
-
-body > header span:first-of-type {
     font-size: 2em;
     font-weight: bold;
-}
-
-body > header > span.title {
-
+    white-space: nowrap;
 }
 
 body > footer {
@@ -67,6 +55,7 @@ body > aside {
 }
 
 .list-unstyled {
+    margin: 0;
     padding: 0px;
 }
 
@@ -74,51 +63,122 @@ body > aside {
     list-style: none;
 }
 
+.content {
+    position: relative;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+}
+
 .paper-card {
     display: block;
-    position: relative;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     width: 100%;
     margin: 20px 0;
-    padding: 10px;
-    padding-bottom: 5px;
+    padding: 0.5em 1em;
     border: 0px solid black;
     border-radius: 3px;
     box-shadow: 0px 0px 7px gray;
     overflow-wrap: break-word;
 }
 
-.paper-card h2, .paper-card h1{
+.paper-card .title{
+    margin: 0.5em 0;
     font-size: 1.5em;
-    color: #43A047
+    color: #2196F3
 }
 
 .paper-card a {
     text-decoration: none;
-    color: #43A047;
+    color: #2196F3;
 }
 
 .paper-card .info {
     width: 100%;
     text-align: right;
-    font-size: 0.85em;
-    color: grey;
 }
 
 .tag {
     display: inline-block;
-    padding: 0 5px;
+    padding: 0.1em 0.5em;
     border: 0px solid black;
     border-radius: 3px;
-    background-color: #43A047;
+    background-color: #2196F3;
     color: white;
     font-size: 0.85em;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.info-text {
+    font-size: 0.85em;
+    color: #9E9E9E;
 }
 
 .top-right {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 0;
+    right: 0;
+}
+
+.bottom-left {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.material-form {
+    position: relative;
+}
+
+.material-form * {
+    font-size: 1em;
+    font-family: "Roboto", sans-serif;
+}
+
+.material-form textarea {
+    resize: vertical;
+}
+
+.material-form input[type="text"],
+.material-form textarea {
+    width: 100%;
+    padding: 0.5em 0;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9E9E9E;
+}
+
+.material-form input[type="text"]:focus,
+.material-form textarea:focus {
+    padding-bottom: calc(0.5em - 1px);
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #2196F3;
+}
+
+.material-form select:focus {
+    border: 1px solid #2196F3;
+    outline: none;
+}
+
+.material-form input[type="submit"] {
+    padding: 0.5em;
+    border: none;
+    color: white;
+    background-color: #2196F3;
+}
+
+.material-form input[type="submit"]:active {
+    border: none;
+    color: white;
+    background-color: #1976D2;
+}
+
+.material-form label {
     font-size: 0.85em;
+    color: #9E9E9E;
+    font-weight: bold;
 }

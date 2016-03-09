@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block header %}
-    <h1>{% if create %}Создание{% else %}Редактирование{% endif %} записи</h1>
+    <h1 class="title">{% if create %}Создание{% else %}Редактирование{% endif %} записи</h1>
 {% endblock %}
 
 {% block content %}
@@ -14,9 +14,19 @@
     {% else %}
         {% url "post_edit" post_pk=form.instance.pk as action_url %}
     {% endif %}
-    <form action="{{ action_url }}" method="post" accept-charset="utf-8">
-        {{ form }}
-        {% csrf_token %}
-        <p><input type="submit" value="Сохранить"></p>
-    </form>
+    <div class="paper-card">
+        <form action="{{ action_url }}" class="material-form" method="post" accept-charset="utf-8">
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                {% if field.errors %}
+                    {{ field.errors }}<br>
+                {% endif%}
+                {{ field.label_tag }}<br>
+                {{ field }}<br>
+                <br>
+                {% endfor %}
+            {% csrf_token %}
+            <input class="bottom-left" type="submit" value="Сохранить">
+        </form>
+    </div>
 {% endblock %}

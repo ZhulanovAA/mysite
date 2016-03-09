@@ -33,7 +33,7 @@ def post_page(request, post_pk):
 @login_required
 def post_create(request):
     if request.method == 'POST':
-        if request.user.has_perm('blog.add_post'):
+        if not request.user.has_perm('blog.add_post'):
             raise PermissionDenied
         form = PostForm(data=request.POST)
         if form.is_valid():

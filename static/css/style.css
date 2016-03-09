@@ -166,19 +166,39 @@ body > aside {
 
 .material-form input[type="submit"] {
     padding: 0.5em;
-    border: none;
-    color: white;
-    background-color: #2196F3;
-}
-
-.material-form input[type="submit"]:active {
-    border: none;
-    color: white;
-    background-color: #1976D2;
 }
 
 .material-form label {
     font-size: 0.85em;
     color: #9E9E9E;
     font-weight: bold;
+}
+
+.btn {
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #1976D2;
+    box-shadow: 0px 0px 7px gray;
+    cursor: pointer
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:active {
+    box-shadow: 0px 2px 7px gray;
+    background-color: #2196F3;
+}
+
+.f-btn {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    font-size: 1.5em;
 }

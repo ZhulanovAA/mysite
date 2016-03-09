@@ -26,3 +26,11 @@
         </div>
     </aside>
 {% endblock %}
+
+{% block float_button %}
+    {% if perms.blog.add_post %}
+        <form action="{% url 'post_create' %}">
+            <input class="btn f-btn" type="submit" value="+">
+        </form>
+    {% endif %}
+{% endblock %}

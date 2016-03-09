@@ -11,4 +11,6 @@ urlpatterns = [
         name='post_create'),
     url(r'^post/(?P<post_pk>\d+)/edit/$', post_edit,
         name='post_edit'),
+    url(r'^post/(?P<post_pk>\d+)/delete/$', post_delete,
+        name='post_delete'),
 ]

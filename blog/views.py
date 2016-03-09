@@ -64,3 +64,12 @@ def post_edit(request, post_pk):
         form = PostForm(instance=post)
     context = {'form': form, 'create': False}
     return render(request, 'blog/form.html', context)
+
+
+@login_required
+def post_delete(request, post_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    if post.author != request.user and not request.user.has_perm('blog.delete_post'):
+        raise PermissionDenied
+    post.delete()
+    return redirect('posts_list')

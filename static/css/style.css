@@ -7,25 +7,36 @@ body {
 }
 
 body > header {
+    display: flex;
+    justify-content: space-between;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 100;
+    box-sizing: border-box;
     padding: 0 30px;
-    height: 60px;
+    min-height: 60px;
     width: 100%;
     background-color: #1976D2;
     color: white;
     box-shadow: 0px 0px 10px gray;
 }
 
+body > header a {
+    color: white;
+    text-decoration: none;
+}
+
 body > header .title {
-    line-height: 60px;
-    margin: 0px;
-    vertical-align: 50%;
+    display: inline;
+    margin: auto 0;
     font-size: 2em;
     font-weight: bold;
-    white-space: nowrap;
+}
+
+.header-info {
+    display: inline-block;
+    margin: auto 0;
 }
 
 body > footer {
@@ -61,6 +72,17 @@ body > aside {
 
 .list-unstyled > li{
     list-style: none;
+}
+
+.errorlist {
+    margin: 0;
+    padding: 0px;
+}
+
+.errorlist > li{
+    list-style: none;
+    font-size: 0.85em;
+    color: #F44336;
 }
 
 .content {
@@ -122,7 +144,7 @@ body > aside {
     right: 0;
 }
 
-.bottom-left {
+.bottom-right {
     position: absolute;
     bottom: 0px;
     right: 0px;
@@ -142,6 +164,8 @@ body > aside {
 }
 
 .material-form input[type="text"],
+.material-form input[type="password"],
+.material-form input[type="email"],
 .material-form textarea {
     width: 100%;
     padding: 0.5em 0;
@@ -151,6 +175,8 @@ body > aside {
 }
 
 .material-form input[type="text"]:focus,
+.material-form input[type="password"]:focus,
+.material-form input[type="email"]:focus,
 .material-form textarea:focus {
     padding-bottom: calc(0.5em - 1px);
     outline: none;
@@ -172,6 +198,52 @@ body > aside {
     font-size: 0.85em;
     color: #9E9E9E;
     font-weight: bold;
+    text-transform: capitalize
+}
+
+.header-form input[type="text"],
+.header-form input[type="password"] {
+    margin-right: 0.5em;
+    width: 100px;
+    padding: 0.5em;
+    color: white;
+    background-color: #2196F3;
+    border: none;
+}
+
+.header-form input[type="text"]:focus,
+.header-form input[type="password"]:focus {
+    outline: none;
+    color: black;
+    background-color: white;
+}
+
+.header-form input[type="text"]:focus::-webkit-input-placeholder {color: #9E9E9E;}
+.header-form input[type="text"]:focus::-moz-placeholder {color: #9E9E9E;}
+.header-form input[type="text"]:focus:-ms-input-placeholder {color: #9E9E9E;}
+.header-form input[type="password"]:focus::-webkit-input-placeholder {color: #9E9E9E;}
+.header-form input[type="password"]:focus::-moz-placeholder {color: #9E9E9E;}
+.header-form input[type="password"]:focus:-ms-input-placeholder {color: #9E9E9E;}
+
+.header-form input[type="text"]::-webkit-input-placeholder {color: white;}
+.header-form input[type="text"]::-moz-placeholder {color: white;}
+.header-form input[type="text"]:-ms-input-placeholder {color: white;}
+.header-form input[type="password"]::-webkit-input-placeholder {color: white;}
+.header-form input[type="password"]::-moz-placeholder {color: white;}
+.header-form input[type="password"]:-ms-input-placeholder {color: white;}
+
+.header-form input[type="submit"] {
+    margin-right: 0.5em;
+    padding: 0.5em;
+}
+
+.header-form * {
+    font-size: 1em;
+    font-family: "Roboto", sans-serif;
+}
+
+.header-form {
+    display: inline-block;
 }
 
 .btn {
@@ -191,6 +263,23 @@ body > aside {
 .btn:active {
     box-shadow: 0px 2px 7px gray;
     background-color: #2196F3;
+}
+
+.light-btn {
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #2196F3;
+    cursor: pointer
+}
+
+.light-btn:focus {
+    outline: none;
+}
+
+.light-btn:active {
+    background-color: #1E88E5;
 }
 
 .f-btn {

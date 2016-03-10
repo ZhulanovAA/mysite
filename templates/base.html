@@ -9,7 +9,10 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <header>{% block header %}{% endblock %}</header>
+    <header>
+        {% block header %}{% endblock %}
+        <div class="header-info">{% include "toggle_login.html" %}</div>
+    </header>
     <main>
         {% block content %}{% endblock %}
     </main>

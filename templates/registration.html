@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block header %}
+    <h1 class="title">Регистрация</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="paper-card">
+        <form action="{% url 'mysite_registration' %}" class="material-form" method="post" accept-charset="utf-8">
+            {{ form.non_field_errors }}
+            {% for field in form %}
+                {{ field.label_tag }}
+                {% if field.errors %}
+                    {{ field.errors }}
+                {% else %}
+                    <br>
+                {% endif %}
+                {{ field }}<br>
+                <br>
+            {% endfor %}
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            <input class="btn" type="submit" value="Зарегистрироваться">
+        </form>
+    </div>
+{% endblock %}

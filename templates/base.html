@@ -10,9 +10,24 @@
 </head>
 <body>
     <header>
-        {% block header %}{% endblock %}
+        <div class="header-info">
+            <img class="icon" id="toggle-sidebar" src="{% static 'images/hamburger.svg'%}">
+            {% block header %}{% endblock %}
+        </div>
         <div class="header-info">{% include "toggle_login.html" %}</div>
     </header>
+    <div class="sidebar sidebar-closed">
+        <b>
+            <ul class="list-unstyled list-divided list-selectable">
+                <li><a href="{% url 'posts_list' %}">Блог</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'user_info' user.username %}">Мой профиль</a></li>
+                    <li><a href="{% url 'blog_user_posts' user.username %}">Мои записи</a></li>
+                {% endif %}
+                <li><a href="{% url 'mysite_about' %}">О сайте</a></li>
+            </ul>
+        </b>
+    </div>
     <main>
         {% block content %}{% endblock %}
     </main>
@@ -22,5 +37,7 @@
         <hr>
         <span class="info-text">&copy; Andrey Zhulanov 2016</span>
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="{% static 'scripts/sidebar.js' %}"></script>
 </body>
 </html>

@@ -38,11 +38,29 @@ body > header .title {
     margin: auto 0;
     font-size: 2em;
     font-weight: bold;
+    vertical-align: middle;
+}
+
+body > header .icon {
+    height: 2em;
+    width: 2em;
+    margin-right: 0.5em;
+    vertical-align: middle;
 }
 
 .header-info {
     display: inline-block;
     margin: auto 0;
+}
+
+.sidebar {
+    position: fixed;
+    left: -210px;
+    z-index: 50;
+    width: 200px;
+    height: 100%;
+    box-shadow: 0px 0px 7px #9E9E9E;
+    background-color: white;
 }
 
 body > footer {
@@ -88,6 +106,19 @@ body > aside {
 
 .list-divided > li:last-child {
     border: none;
+}
+
+.list-selectable a {
+    display: block;
+    padding: 0.5em;
+}
+
+.list-selectable > li {
+    padding: 0;
+}
+
+.list-selectable > li:hover {
+    background-color: #F5F5F5;
 }
 
 .errorlist {
@@ -136,6 +167,13 @@ body > aside {
     font-size: 0.85em;
     font-weight: bold;
     vertical-align: middle;
+}
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    cursor: pointer;
 }
 
 .info {

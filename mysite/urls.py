@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.views import login, logout
 from django.core.urlresolvers import reverse_lazy
-from .views import register
+from .views import *
 import blog.urls
 
 urlpatterns = [
@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^logout/$', logout,
         {'next_page': reverse_lazy('posts_list')}, name='mysite_logout'),
     url(r'^registration/$', register, name='mysite_registration'),
+    url(r'^about/$', about, name='mysite_about'),
 ]

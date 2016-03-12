@@ -17,3 +17,7 @@ def register(request):
         form = ExtendedUserCreationForm()
     context = {'form': form}
     return render(request, 'registration.html', context)
+
+
+def about(request):
+    return render(request, 'about.html')

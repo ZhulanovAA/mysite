@@ -19,7 +19,8 @@
                     </a>
                 {% endif %}
                 {% if post.author == user or perms.blog.delete_post %}
-                    <a href="{% url 'post_delete' post.pk %}">
+                    <a href="{% url 'post_delete' post.pk %}"
+                       onclick="return confirm_alert(this);">
                         <img class="icon" src="{% static 'images/close_dark.svg' %}">
                     </a>
                 {% endif %}

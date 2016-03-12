@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load blog_tags%}
+{% load staticfiles %}
 
 {% block title %}Запись пользователя {{ post.author.username }}{% endblock %}
 
@@ -13,10 +14,14 @@
             <h1 class="title"><a href="{% url 'post_page' post.pk %}">{{ post.title }}</a></h1>
             <div class="top-right info-text">
                 {% if post.author == user or perms.blog.change_post %}
-                    <a href="{% url 'post_edit' post.pk %}">редактировать</a>
+                    <a href="{% url 'post_edit' post.pk %}">
+                        <img class="icon" src="{% static 'images/edit_dark.svg' %}">
+                    </a>
                 {% endif %}
                 {% if post.author == user or perms.blog.delete_post %}
-                    <a href="{% url 'post_delete' post.pk %}">удалить</a>
+                    <a href="{% url 'post_delete' post.pk %}">
+                        <img class="icon" src="{% static 'images/close_dark.svg' %}">
+                    </a>
                 {% endif %}
             </div>
             <p>{{ post.text }}</p>
@@ -37,8 +42,9 @@
                 <li>
                     {% if comment.author == user or perms.blog.delete_comment %}
                         <div class="info-text top-right">
-                            <a href="{% url 'blog_comment_delete' post.pk comment.pk %}">
-                                удалить
+                            <a href="{% url 'blog_comment_delete' post.pk comment.pk %}"
+                               onclick="return confirm_alert(this);">
+                                <img class="icon" src="{% static 'images/close_dark.svg' %}">
                             </a>
                         </div>
                     {% endif %}
@@ -71,4 +77,13 @@
     {% else %}
         Войдите, чтобы оставлять коментарии
     {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script type="text/javascript">
+        function confirm_alert(node) {
+            return confirm("Вы уверены?");
+        }
+    </script>
 {% endblock %}

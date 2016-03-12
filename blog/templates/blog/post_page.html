@@ -31,11 +31,44 @@
             </div>
         </div>
     </div>
-    {% if post.comments.all %}
-        {% for comment in post.comments.all %}
-            <p>{{ comment.author }}: {{ comment.text }}</p>
-        {% endfor %}
+    <ul class="list-unstyled list-divided">
+        {% if post.comments.all %}
+            {% for comment in post.comments.all %}
+                <li>
+                    {% if comment.author == user or perms.blog.delete_comment %}
+                        <div class="info-text top-right">
+                            <a href="{% url 'blog_comment_delete' post.pk comment.pk %}">
+                                удалить
+                            </a>
+                        </div>
+                    {% endif %}
+                    <a href="{% url 'user_info' post.author.username %}">
+                        {{ comment.author.username }}:
+                        <br>
+                    </a>
+                    {{ comment.text }}
+                    <div class="info info-text">
+                        <span class="date-published">{{ comment.date_created }}</span>
+                    </div>
+                </li>
+            {% endfor %}
+        {% else %}
+            <li>Коментариев пока нет</li>
+        {% endif %}
+    </ul>
+    {% if user.is_authenticated %}
+        {% if perms.blog.add_comment %}
+            <form action="{% url 'blog_comment_add' post.pk %}" class="comment-form" method="post">
+                <textarea id="{{ form.text.id_for_label }}" name="{{ form.text.html_name }}"
+                          placeholder="Введите коментарий" rows="5"></textarea>
+                <br>
+                {% csrf_token %}
+                <input class="btn" type="submit" value="Отправить">
+            </form>
+        {% else %}
+            Вы не можете оставлять коментарии
+        {% endif %}
     {% else %}
-        <p>Коментариев пока нет</p>
+        Войдите, чтобы оставлять коментарии
     {% endif %}
 {% endblock %}

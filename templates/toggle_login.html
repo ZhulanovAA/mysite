@@ -1,8 +1,7 @@
 {% if user.is_authenticated %}
-    <span>
-        {{ user.username }} |
-        <a href="{% url 'mysite_logout' %}">выйти</a>
-    </span>
+    <a href="{% url 'user_info' user.username %}">{{ user.username }}</a>
+     |
+    <a href="{% url 'mysite_logout' %}">выйти</a>
 {% else %}
     <form class="header-form" action="{% url 'mysite_login' %}"
           method="post" accept-charset="utf-8">

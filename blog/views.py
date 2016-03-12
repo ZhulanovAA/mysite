@@ -1,11 +1,10 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import PostForm
-from .models import Post
+from .forms import CommentForm, PostForm
+from .models import Comment, Post
 
 
 def posts_list(request):
@@ -28,6 +27,8 @@ def user_info(request, username):
 def post_page(request, post_pk):
     post = get_object_or_404(Post, pk=post_pk)
     context = {'post': post}
+    if request.user.has_perm('blog.add_comment'):
+        context['form'] = CommentForm()
     return render(request, 'blog/post_page.html', context)
 
 
@@ -74,3 +75,28 @@ def post_delete(request, post_pk):
         raise PermissionDenied
     post.delete()
     return redirect('posts_list')
+
+
+@login_required
+def comment_add(request, post_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    if request.method == 'POST':
+        if not request.user.has_perm('blog.add_comment'):
+            raise PermissionDenied
+        form = CommentForm(data=request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.post = post
+            comment.save()
+    return redirect('post_page', post_pk=post_pk)
+
+
+@login_required
+def comment_delete(request, post_pk, comment_pk):
+    post = get_object_or_404(Post, pk=post_pk)
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    if comment.author != request.user and not request.user.has_perm('blog.delete_comment'):
+        raise PermissionDenied
+    comment.delete()
+    return redirect('post_page', post_pk=post_pk)

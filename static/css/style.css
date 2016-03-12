@@ -4,6 +4,12 @@ body {
     background-color: #FAFAFA;
     font-size: 1em;
     font-family: "Roboto", sans-serif;
+    overflow-wrap: break-word;
+}
+
+body a {
+    text-decoration: none;
+    color: #2196F3;
 }
 
 body > header {
@@ -74,6 +80,16 @@ body > aside {
     list-style: none;
 }
 
+.list-divided > li {
+    position: relative;
+    padding: 0.5em;
+    border-bottom: 1px solid #9E9E9E;
+}
+
+.list-divided > li:last-child {
+    border: none;
+}
+
 .errorlist {
     margin: 0;
     padding: 0px;
@@ -102,23 +118,12 @@ body > aside {
     border: 0px solid black;
     border-radius: 3px;
     box-shadow: 0px 0px 7px gray;
-    overflow-wrap: break-word;
 }
 
 .paper-card .title{
     margin: 0.5em 0;
     font-size: 1.5em;
     color: #2196F3
-}
-
-.paper-card a {
-    text-decoration: none;
-    color: #2196F3;
-}
-
-.paper-card .info {
-    width: 100%;
-    text-align: right;
 }
 
 .tag {
@@ -131,6 +136,11 @@ body > aside {
     font-size: 0.85em;
     font-weight: bold;
     vertical-align: middle;
+}
+
+.info {
+    width: 100%;
+    text-align: right;
 }
 
 .info-text {
@@ -191,7 +201,9 @@ body > aside {
 }
 
 .material-form input[type="submit"] {
-    padding: 0.5em;
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
 }
 
 .material-form label {
@@ -200,6 +212,48 @@ body > aside {
     font-weight: bold;
     text-transform: capitalize
 }
+
+
+
+.comment-form {
+    position: relative;
+}
+
+.comment-form * {
+    font-size: 1em;
+    font-family: "Roboto", sans-serif;
+}
+
+.comment-form textarea {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    width: 100%;
+    resize: vertical;
+    padding: 0.5em;
+    background-color: transparent;
+    border: 1px solid #9E9E9E;
+}
+
+.comment-form textarea:focus {
+    padding: calc(0.5em - 1px);
+    background: transparent;
+    border: 2px solid #2196F3;
+}
+
+.comment-form input[type="submit"] {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.comment-form label {
+    font-size: 0.85em;
+    color: #9E9E9E;
+    font-weight: bold;
+    text-transform: capitalize
+}
+
+
 
 .header-form input[type="text"],
 .header-form input[type="password"] {
@@ -234,7 +288,6 @@ body > aside {
 
 .header-form input[type="submit"] {
     margin-right: 0.5em;
-    padding: 0.5em;
 }
 
 .header-form * {
@@ -246,7 +299,10 @@ body > aside {
     display: inline-block;
 }
 
+
+
 .btn {
+    padding: 0.5em;
     border: none;
     color: white;
     font-weight: bold;
@@ -266,6 +322,7 @@ body > aside {
 }
 
 .light-btn {
+    padding: 0.5em;
     border: none;
     color: white;
     font-weight: bold;

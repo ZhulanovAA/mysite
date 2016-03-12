@@ -1,13 +1,14 @@
 {% if user.is_authenticated %}
     <a href="{% url 'user_info' user.username %}">{{ user.username }}</a>
      |
-    <a href="{% url 'mysite_logout' %}">выйти</a>
+    <a href="{% url 'mysite_logout' %}?next={{ request.path }}">выйти</a>
 {% else %}
     <form class="header-form" action="{% url 'mysite_login' %}"
           method="post" accept-charset="utf-8">
         <input type="text" placeholder="Логин" name="username">
         <input type="password" placeholder="Пароль" name="password">
         {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
         <input class="light-btn" type="submit" value="Войти">
     </form>
     <form class="header-form" action="{% url 'mysite_registration' %}">

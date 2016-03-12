@@ -52,8 +52,8 @@ body > footer {
 }
 
 body > footer hr {
-	border: 0;
-	border-bottom: 1px solid grey;
+	border: none;
+	border-bottom: 1px solid #9E9E9E;
 	margin: 0.5em auto;
 	width: 60%;
 }
@@ -113,7 +113,7 @@ body > aside {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     width: 100%;
-    margin: 20px 0;
+    margin: 1em 0;
     padding: 0.5em 1em;
     border: 0px solid black;
     border-radius: 3px;
@@ -217,6 +217,7 @@ body > aside {
 
 .comment-form {
     position: relative;
+    margin-top: 0.5em;
 }
 
 .comment-form * {
@@ -228,7 +229,7 @@ body > aside {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     width: 100%;
-    resize: vertical;
+    resize: none;
     padding: 0.5em;
     background-color: transparent;
     border: 1px solid #9E9E9E;

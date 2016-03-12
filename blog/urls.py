@@ -5,6 +5,8 @@ urlpatterns = [
     url(r'^$', posts_list, name='posts_list'),
     url(r'^user/(?P<username>[@\+\.\-\w]+)/$',
         user_info, name='user_info'),
+    url(r'^user/(?P<username>[@\+\.\-\w]+)/posts/$',
+        user_posts, name='blog_user_posts'),
     url(r'^post/(?P<post_pk>[\d])/$',
         post_page, name='post_page'),
     url(r'^post/create/$', post_create,

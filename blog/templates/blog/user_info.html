@@ -8,25 +8,13 @@
 {% endblock %}
 
 {% block content %}
-    <br>
-    <span>Записей: {{ observed_user.posts.count }}</span><br>
-    <span>Комментариев: {{ observed_user.comments.count }}</span><br><br>
-    <span>Последние записи:</span>
-    <ul class="list-unstyled">
-    {% for post in posts %}
-        <li class="paper-card">{% include "blog/post_short_info.html" %}</li>
-    {% empty %}
-        <li>Нет записей</li>
-    {% endfor %}
-    </ul>
-{% endblock %}
-
-{% block aside %}
-    <aside>
-        <div class="paper-card">
-            <ul class="list-unstyled">
-                {% tagcloud observed_user %}
-            </ul>
-        </div>
-    </aside>
+    <div class="paper-card">
+        <h2 class="title">{{ observed_user.last_name }} {{ observed_user.first_name }} ({{observed_user.username}})</h2>
+        <b>Статистика:</b><br><br>
+        Записей: {{ observed_user.posts.count }}<br>
+        Комментариев: {{ observed_user.comments.count }}<br>
+        Дата регистрации: {{ observed_user.date_joined }}<br>
+        <br>
+        <a href="{% url 'blog_user_posts' observed_user.username %}">Записи пользователя</a>
+    </div>
 {% endblock %}

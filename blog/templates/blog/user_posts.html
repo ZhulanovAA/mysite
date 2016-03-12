@@ -1,0 +1,18 @@
+{% extends 'blog/posts_list.html' %}
+{% load blog_tags%}
+
+{% block title %}Записи пользователя {{ observed_user.username }}{% endblock %}
+
+{% block header %}
+    <h1 class="title">Записи пользователя {{ observed_user.username }}</h1>
+{% endblock %}
+
+{% block aside %}
+    <aside>
+        <div class="paper-card">
+            <ul class="list-unstyled">
+                {% tagcloud observed_user %}
+            </ul>
+        </div>
+    </aside>
+{% endblock %}

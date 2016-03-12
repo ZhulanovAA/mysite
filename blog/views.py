@@ -17,11 +17,17 @@ def posts_list(request):
 
 def user_info(request, username):
     user = get_object_or_404(User, username=username)
+    context = {'observed_user': user}
+    return render(request, 'blog/user_info.html', context)
+
+
+def user_posts(request, username):
+    user = get_object_or_404(User, username=username)
     posts = Post.objects.filter(author__username=user.username)
     if request.GET.get('tag'):
         posts = posts.filter(tags__name=request.GET['tag'])
     context = {'posts': posts, 'observed_user': user}
-    return render(request, 'blog/user_info.html', context)
+    return render(request, 'blog/user_posts.html', context)
 
 
 def post_page(request, post_pk):

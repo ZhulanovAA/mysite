@@ -32,30 +32,37 @@
                 {% endfor %}
             {% endif %}
             <div class="info info-text">
-                <a class="author" href="{% url 'user_info' post.author.username %}">{{ post.author.username }}</a>
-                <span class="date-published">{{ post.date_published }}</span>
+                <span>
+
+                </span>
+                <span>
+                    <a class="author" href="{% url 'user_info' post.author.username %}">{{ post.author.username }}</a>
+                    {{ post.date_published }}
+                </span>
             </div>
         </div>
     </div>
-    <ul class="list-unstyled list-divided">
+    <ul class="list-unstyled list-divided" id="comments">
         {% if post.comments.all %}
             {% for comment in post.comments.all %}
                 <li>
-                    {% if comment.author == user or perms.blog.delete_comment %}
-                        <div class="info-text top-right">
-                            <a href="{% url 'blog_comment_delete' post.pk comment.pk %}"
-                               onclick="return confirm_alert(this);">
-                                <img class="icon" src="{% static 'images/close_dark.svg' %}">
-                            </a>
+                    <div class="content">
+                        {% if comment.author == user or perms.blog.delete_comment %}
+                            <div class="info-text top-right">
+                                <a href="{% url 'blog_comment_delete' post.pk comment.pk %}"
+                                   onclick="return confirm_alert(this);">
+                                    <img class="icon" src="{% static 'images/close_dark.svg' %}">
+                                </a>
+                            </div>
+                        {% endif %}
+                        <a href="{% url 'user_info' post.author.username %}">
+                            {{ comment.author.username }}:
+                            <br>
+                        </a>
+                        {{ comment.text }}
+                        <div class="info info-text">
+                            <span class="date-published">{{ comment.date_created }}</span>
                         </div>
-                    {% endif %}
-                    <a href="{% url 'user_info' post.author.username %}">
-                        {{ comment.author.username }}:
-                        <br>
-                    </a>
-                    {{ comment.text }}
-                    <div class="info info-text">
-                        <span class="date-published">{{ comment.date_created }}</span>
                     </div>
                 </li>
             {% endfor %}

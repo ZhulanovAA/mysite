@@ -177,6 +177,9 @@ body > aside {
 }
 
 .info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5em;
     width: 100%;
     text-align: right;
 }

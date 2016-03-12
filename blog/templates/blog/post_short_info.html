@@ -1,3 +1,4 @@
+{% load static %}
 <h2 class="title"><a href="{% url 'post_page' post.pk %}">{{ post.title }}</a></h2>
 <p>{{ post.text|truncatewords:50 }}</p>
 {% if post.tags.count %}
@@ -6,6 +7,14 @@
   {% endfor %}
 {% endif %}
 <div class="info info-text">
-    <a class="author" href="{% url 'user_info' post.author.username %}">{{ post.author.username }}</a>
-    <span class="date-published">{{ post.date_published }}</span>
+    <span>
+        {{ post.comments.count }}
+        <a href="{% url 'post_page' post.pk %}#comments">
+            <img class="icon" src="{% static 'images/comments_dark.svg' %}"  style="vertical-align: bottom;">
+        </a>
+    </span>
+    <span>
+        <a class="author" href="{% url 'user_info' post.author.username %}">{{ post.author.username }}</a>
+        {{ post.date_published }}
+    </span>
 </div>

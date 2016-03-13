@@ -5,4 +5,5 @@ db.sqlite3
 .DS_Store
 .idea
 */migrations
+/mysite/database_settings.py
 mysite/database_settings.py

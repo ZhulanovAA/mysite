@@ -169,6 +169,26 @@ body > aside {
     vertical-align: middle;
 }
 
+.tag-unselected {
+    background-color: #F5F5F5;
+    color: #9E9E9E;
+}
+
+#tags-chooser {
+    margin-top: 0.5em;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#tags-chooser .tag {
+    cursor: pointer;
+}
+
 .icon {
     display: inline-block;
     width: 1em;

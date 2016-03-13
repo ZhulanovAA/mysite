@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
   {% if create %}Создание{% else %}Редактирование{% endif %} записи
@@ -24,11 +25,25 @@
                 {% else %}
                     <br>
                 {% endif %}
-                {{ field }}<br>
+                {% if field.id_for_label == 'id_tags' %}
+                    <div style="display: none;">
+                        {{ field }}
+                    </div>
+                    <div id="tags-chooser">
+
+                    </div>
+                {% else %}
+                    {{ field }}<br>
+                {% endif %}
                 <br>
             {% endfor %}
             {% csrf_token %}
             <input class="btn" type="submit" value="Сохранить">
         </form>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'blog/scripts/tags_chooser.js' %}"></script>
 {% endblock %}

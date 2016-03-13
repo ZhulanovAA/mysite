@@ -19,6 +19,9 @@
     <div class="sidebar sidebar-closed">
         <b>
             <ul class="list-unstyled list-divided list-selectable">
+                {% if user.is_staff %}
+                    <li><a href="{% url 'admin:index' %}">Админка</a></li>
+                {% endif %}
                 <li><a href="{% url 'posts_list' %}">Блог</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'user_info' user.username %}">Мой профиль</a></li>

@@ -9,7 +9,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 </head>
 <body>
-    <header>
+    <header class="ripple-parent">
         <div class="header-info">
             <img class="icon" id="toggle-sidebar" src="{% static 'images/hamburger.svg'%}">
             {% block header %}{% endblock %}
@@ -20,17 +20,17 @@
         <b>
             <ul class="list-unstyled list-selectable">
                 {% if user.is_staff %}
-                    <li><a href="{% url 'admin:index' %}">Админка</a></li>
+                    <li class="ripple"><a href="{% url 'admin:index' %}">Админка</a></li>
                 {% endif %}
-                <li><a id="blog-link" href="{% url 'posts_list' %}"
+                <li class="ripple"><a id="blog-link" href="{% url 'posts_list' %}"
                        class="{% block blog_link_class %}{% endblock %}">Блог</a></li>
                 {% if user.is_authenticated %}
-                    <li><a id="my-profile-link" href="{% url 'user_info' user.username %}"
+                    <li class="ripple"><a id="my-profile-link" href="{% url 'user_info' user.username %}"
                            class="{% block my_profile_link_class %}{% endblock %}">Мой профиль</a></li>
-                    <li><a id="my-posts-link" href="{% url 'blog_user_posts' user.username %}"
+                    <li class="ripple"><a id="my-posts-link" href="{% url 'blog_user_posts' user.username %}"
                            class="{% block my_posts_link_class %}{% endblock %}">Мои записи</a></li>
                 {% endif %}
-                <li><a id="about-link" href="{% url 'mysite_about' %}"
+                <li class="ripple"><a id="about-link" href="{% url 'mysite_about' %}"
                        class="{% block about_link_class %}{% endblock %}">О сайте</a></li>
             </ul>
         </b>
@@ -47,6 +47,7 @@
     {% block scripts %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="{% static 'scripts/sidebar.js' %}"></script>
+        <script src="{% static 'scripts/ripple_click.js' %}"></script>
     {% endblock %}
 </body>
 </html>

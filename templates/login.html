@@ -22,13 +22,13 @@
             {% endfor %}
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}">
-            <input class="btn" type="submit" value="Войти">
+            <button class="btn ripple ripple-dark" type="submit">Войти</button>
         </form>
     </div>
 {% endblock %}
 
 {% block float_button %}
     <form action="{% url 'mysite_registration' %}">
-        <input class="btn f-btn" type="submit" value="+">
+        <button class="btn f-btn ripple ripple-dark" type="submit">+</button>
     </form>
 {% endblock %}

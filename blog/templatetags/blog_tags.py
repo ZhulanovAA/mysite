@@ -21,5 +21,5 @@ def tagcloud(user=None):
     tags = Tag.objects.filter(**filters)
     tags = tags.annotate(count=models.Count('post'))
     tags = tags.order_by('name').values_list('name', 'count')
-    fmt = '<li><a href="%s?tag={0}">{0} - {1}</a></li>' % url
+    fmt = '<li><a class="ripple-child" href="%s?tag={0}">{0} - {1}</a></li>' % url
     return format_html_join('', fmt, tags)

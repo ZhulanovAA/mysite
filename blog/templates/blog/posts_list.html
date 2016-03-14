@@ -15,7 +15,7 @@
 {% block content %}
     <ul class="list-unstyled">
     {% for post in posts %}
-        <li class="paper-card">{% include "blog/post_short_info.html" %}</li>
+        <li class="paper-card ripple-parent">{% include "blog/post_short_info.html" %}</li>
     {% empty %}
         <li>Нет записей</li>
     {% endfor %}
@@ -51,7 +51,7 @@
 
 {% block aside %}
     <aside>
-        <div class="paper-card">
+        <div class="paper-card ripple-parent">
             <ul class="list-unstyled">
                 {% tagcloud %}
             </ul>
@@ -62,7 +62,7 @@
 {% block float_button %}
     {% if perms.blog.add_post %}
         <form action="{% url 'post_create' %}">
-            <input class="btn f-btn" type="submit" value="+">
+            <button class="btn f-btn ripple ripple-dark" type="submit">+</button>
         </form>
     {% endif %}
 {% endblock %}

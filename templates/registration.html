@@ -22,7 +22,7 @@
             {% endfor %}
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}">
-            <input class="btn" type="submit" value="Зарегистрироваться">
+            <button class="btn ripple ripple-dark" type="submit">Зарегистрироваться</button>
         </form>
     </div>
 {% endblock %}

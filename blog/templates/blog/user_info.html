@@ -7,20 +7,20 @@
     <h1 class="title">Профиль пользователя {{ observed_user.username }}</h1>
 {% endblock %}
 
-{% if user = observed_user %}
-    {% block my_profile_link_class %}
+{% block my_profile_link_class %}
+    {% if user == observed_user %}
         selected
-    {% endblock %}
-{% endif %}
+    {% endif %}
+{% endblock %}
 
 {% block content %}
-    <div class="paper-card">
+    <div class="paper-card ripple-parent">
         <h2 class="title">{{ observed_user.last_name }} {{ observed_user.first_name }} ({{observed_user.username}})</h2>
         <b>Статистика:</b><br><br>
         Записей: {{ observed_user.posts.count }}<br>
         Комментариев: {{ observed_user.comments.count }}<br>
         Дата регистрации: {{ observed_user.date_joined }}<br>
         <br>
-        <a href="{% url 'blog_user_posts' observed_user.username %}">Записи пользователя</a>
+        <a class="ripple-child" href="{% url 'blog_user_posts' observed_user.username %}">Записи пользователя</a>
     </div>
 {% endblock %}

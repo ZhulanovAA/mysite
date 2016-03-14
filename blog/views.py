@@ -21,7 +21,7 @@ def posts_list(request):
         current_page = int(request.GET['page'])
     else:
         current_page = 1
-    last_page = round(posts.count() / POSTS_ON_PAGE + 0.5)
+    last_page = max(round(posts.count() / POSTS_ON_PAGE + 0.5), 1)
     if current_page > last_page:
         raise Http404()
     posts = posts[(current_page-1) * POSTS_ON_PAGE:current_page * POSTS_ON_PAGE]
@@ -50,7 +50,7 @@ def user_posts(request, username):
         current_page = int(request.GET['page'])
     else:
         current_page = 1
-    last_page = round(posts.count() / POSTS_ON_PAGE + 0.5)
+    last_page = max(round(posts.count() / POSTS_ON_PAGE + 0.5), 1)
     if current_page > last_page:
         raise Http404()
     posts = posts[(current_page-1) * POSTS_ON_PAGE:current_page * POSTS_ON_PAGE]

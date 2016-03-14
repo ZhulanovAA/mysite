@@ -7,6 +7,13 @@
     <h1 class="title">Записи пользователя {{ observed_user.username }}</h1>
 {% endblock %}
 
+{% if user = observed_user %}
+    {% block blog_link_class %}{% endblock %}
+    {% block my_profile_link_class %}
+        selected
+    {% endblock %}
+{% endif %}
+
 {% block aside %}
     <aside>
         <div class="paper-card">

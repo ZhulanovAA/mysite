@@ -110,7 +110,8 @@ body > aside {
 
 .list-selectable a {
     display: block;
-    padding: 0.5em;
+    padding: 1em;
+    color: #9E9E9E;
 }
 
 .list-selectable > li {
@@ -119,6 +120,12 @@ body > aside {
 
 .list-selectable > li:hover {
     background-color: #F5F5F5;
+}
+
+.list-selectable .selected {
+    border-left: 0.5em solid #2196F3;
+    padding-left: 0.5em;
+    color: #2196F3;
 }
 
 .errorlist {

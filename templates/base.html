@@ -18,16 +18,20 @@
     </header>
     <div class="sidebar sidebar-closed">
         <b>
-            <ul class="list-unstyled list-divided list-selectable">
+            <ul class="list-unstyled list-selectable">
                 {% if user.is_staff %}
                     <li><a href="{% url 'admin:index' %}">Админка</a></li>
                 {% endif %}
-                <li><a href="{% url 'posts_list' %}">Блог</a></li>
+                <li><a id="blog-link" href="{% url 'posts_list' %}"
+                       class="{% block blog_link_class %}{% endblock %}">Блог</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'user_info' user.username %}">Мой профиль</a></li>
-                    <li><a href="{% url 'blog_user_posts' user.username %}">Мои записи</a></li>
+                    <li><a id="my-profile-link" href="{% url 'user_info' user.username %}"
+                           class="{% block my_profile_link_class %}{% endblock %}">Мой профиль</a></li>
+                    <li><a id="my-posts-link" href="{% url 'blog_user_posts' user.username %}"
+                           class="{% block my_posts_link_class %}{% endblock %}">Мои записи</a></li>
                 {% endif %}
-                <li><a href="{% url 'mysite_about' %}">О сайте</a></li>
+                <li><a id="about-link" href="{% url 'mysite_about' %}"
+                       class="{% block about_link_class %}{% endblock %}">О сайте</a></li>
             </ul>
         </b>
     </div>

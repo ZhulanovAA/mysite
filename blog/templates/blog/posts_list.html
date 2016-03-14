@@ -8,6 +8,10 @@
     <h1 class="title">Блог</h1>
 {% endblock %}
 
+{% block blog_link_class %}
+    selected
+{% endblock %}
+
 {% block content %}
     <ul class="list-unstyled">
     {% for post in posts %}

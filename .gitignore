@@ -6,4 +6,5 @@ db.sqlite3
 .idea
 */migrations
 /mysite/database_settings.py
+/mysite/settings.py
 mysite/database_settings.py

@@ -1,17 +1,34 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import PermissionDenied
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import CommentForm, PostForm
 from .models import Comment, Post
 
+POSTS_ON_PAGE = 10
+
 
 def posts_list(request):
+    context = {}
     posts = Post.objects.all()
+
     if request.GET.get('tag'):
         posts = posts.filter(tags__name=request.GET['tag'])
-    context = {'posts': posts}
+
+    if request.GET.get('page'):
+        current_page = int(request.GET['page'])
+    else:
+        current_page = 1
+    last_page = round(posts.count() / POSTS_ON_PAGE + 0.5)
+    if current_page > last_page:
+        raise Http404()
+    posts = posts[(current_page-1) * POSTS_ON_PAGE:current_page * POSTS_ON_PAGE]
+
+    context['posts'] = posts
+    context['current_page'] = current_page
+    context['last_page'] = last_page
     return render(request, 'blog/posts_list.html', context)
 
 
@@ -24,9 +41,24 @@ def user_info(request, username):
 def user_posts(request, username):
     user = get_object_or_404(User, username=username)
     posts = Post.objects.filter(author__username=user.username)
+    context = {}
+
     if request.GET.get('tag'):
         posts = posts.filter(tags__name=request.GET['tag'])
-    context = {'posts': posts, 'observed_user': user}
+
+    if request.GET.get('page'):
+        current_page = int(request.GET['page'])
+    else:
+        current_page = 1
+    last_page = round(posts.count() / POSTS_ON_PAGE + 0.5)
+    if current_page > last_page:
+        raise Http404()
+    posts = posts[(current_page-1) * POSTS_ON_PAGE:current_page * POSTS_ON_PAGE]
+
+    context['posts'] = posts
+    context['current_page'] = current_page
+    context['last_page'] = last_page
+    context['observed_user'] = user
     return render(request, 'blog/user_posts.html', context)
 
 

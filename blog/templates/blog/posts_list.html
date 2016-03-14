@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% load blog_tags%}
+{% load blog_tags %}
+{% load static %}
 
 {% block title %}Блог Андрея Жуланова{% endblock %}
 
@@ -15,6 +16,33 @@
         <li>Нет записей</li>
     {% endfor %}
     </ul>
+    <div id="pages-indicator">
+        {% if current_page > 1 %}
+            <button class="btn" id="prev-page-button">&lt</button>
+            <button class="btn unselected">1</button>
+            {% if current_page|add:'-1' > 1 %}
+                {% if current_page|add:'-10' > 1 %}
+                    <span class="info-text">...</span>
+                    <button class="btn unselected">{{ current_page|add:'-10' }}</button>
+                {% endif %}
+                <span class="info-text">...</span>
+                <button class="btn unselected">{{current_page|add:'-1'}}</button>
+            {% endif %}
+        {% endif %}
+        <button class="btn" id="current-page-button">{{current_page}}</button>
+        {% if current_page < last_page %}
+            {% if current_page|add:'1' < last_page %}
+                <button class="btn unselected">{{current_page|add:'1'}}</button>
+                <span class="info-text">...</span>
+                {% if current_page|add:'10' < last_page %}
+                    <button class="btn unselected">{{ current_page|add:'10' }}</button>
+                    <span class="info-text">...</span>
+                {% endif %}
+            {% endif %}
+            <button class="btn unselected">{{ last_page }}</button>
+            <button class="btn" id="next-page-button">&gt</button>
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block aside %}
@@ -33,4 +61,9 @@
             <input class="btn f-btn" type="submit" value="+">
         </form>
     {% endif %}
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'blog/scripts/pages_indicator.js' %}"></script>
 {% endblock %}

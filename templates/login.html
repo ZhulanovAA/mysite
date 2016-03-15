@@ -6,6 +6,8 @@
     <h1 class="title">Вход</h1>
 {% endblock %}
 
+{% block header-right %}{% endblock %}
+
 {% block content %}
     <div class="paper-card">
         <form action="{% url 'mysite_login' %}" class="material-form" method="post" accept-charset="utf-8">
@@ -23,12 +25,9 @@
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}">
             <button class="btn ripple ripple-dark" type="submit">Войти</button>
+            <a href="{% url 'mysite_registration' %}" class="bottom-left">
+                <button class="btn ripple ripple-dark" type="button">Зарегистрироваться</button>
+            </a>
         </form>
     </div>
-{% endblock %}
-
-{% block float_button %}
-    <form action="{% url 'mysite_registration' %}">
-        <button class="btn f-btn ripple ripple-dark" type="submit">+</button>
-    </form>
 {% endblock %}

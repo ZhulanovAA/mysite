@@ -14,7 +14,11 @@
             <img class="icon" id="toggle-sidebar" src="{% static 'images/hamburger.svg'%}">
             {% block header %}{% endblock %}
         </div>
-        <div class="header-info">{% include "toggle_login.html" %}</div>
+        {% block header-right %}
+            <div class="header-info">
+                {% include "toggle_login.html" %}
+            </div>
+        {% endblock %}
     </header>
     <div class="sidebar sidebar-closed">
         <b>

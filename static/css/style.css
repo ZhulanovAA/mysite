@@ -217,6 +217,8 @@ body > aside {
     color: #9E9E9E;
 }
 
+/* positions */
+
 .top-right {
     position: absolute;
     top: 0;
@@ -229,11 +231,17 @@ body > aside {
     right: 0px;
 }
 
-.material-form {
-    position: relative;
+.bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 /* forms */
+
+.material-form {
+    position: relative;
+}
 
 .material-form * {
     font-size: 1em;

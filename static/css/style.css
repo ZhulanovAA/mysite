@@ -89,6 +89,8 @@ body > aside {
     text-align: right;
 }
 
+/* lists */
+
 .list-unstyled {
     margin: 0;
     padding: 0px;
@@ -126,6 +128,24 @@ body > aside {
     border-left: 0.5em solid #2196F3;
     padding-left: 0.5em;
     color: #2196F3;
+}
+
+.list-links a {
+    display: block;
+    padding: 0.5em;
+}
+
+.list-links > li {
+    padding: 0;
+}
+
+.list-links > li:hover {
+    background-color: #F5F5F5;
+}
+
+.list-links .selected {
+    border-right: 0.25em solid #2196F3;
+    padding-right: 0.25em;
 }
 
 .errorlist {
@@ -237,6 +257,10 @@ body > aside {
     left: 0;
 }
 
+.no-padding {
+    padding: 0 !important;
+}
+
 /* forms */
 
 .material-form {
@@ -292,7 +316,7 @@ body > aside {
     text-transform: capitalize
 }
 
-
+/* form for comments */
 
 .comment-form {
     position: relative;

@@ -16,10 +16,6 @@
 
 {% block aside %}
     <aside>
-        <div class="paper-card ripple-parent">
-            <ul class="list-unstyled">
-                {% tagcloud observed_user %}
-            </ul>
-        </div>
+        {% tagcloud selected_tag observed_user %}
     </aside>
 {% endblock %}

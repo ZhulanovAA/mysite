@@ -16,6 +16,7 @@ def posts_list(request):
 
     if request.GET.get('tag'):
         posts = posts.filter(tags__name=request.GET['tag'])
+        context['selected_tag'] = request.GET['tag']
 
     if request.GET.get('page'):
         current_page = int(request.GET['page'])
@@ -45,6 +46,7 @@ def user_posts(request, username):
 
     if request.GET.get('tag'):
         posts = posts.filter(tags__name=request.GET['tag'])
+        context['selected_tag'] = request.GET['tag']
 
     if request.GET.get('page'):
         current_page = int(request.GET['page'])

@@ -1,0 +1,17 @@
+{% if observed_user %}
+    {% url 'user_posts' observed_user as link %}
+{% else %}
+    {% url 'posts_list' as link %}
+{% endif%}
+
+<div class="paper-card no-padding">
+    <ul class="list-unstyled list-links">
+        {% for tag in tags %}
+            <li>
+                <a class="ripple{% if tag.name == selected_tag %} selected{% endif %}" href="{{ link }}?tag={{ tag.name }}">
+                    {{ tag.name }} - {{ tag.post_set.count }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

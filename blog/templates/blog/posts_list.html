@@ -51,11 +51,7 @@
 
 {% block aside %}
     <aside>
-        <div class="paper-card ripple-parent">
-            <ul class="list-unstyled">
-                {% tagcloud %}
-            </ul>
-        </div>
+        {% tagcloud selected_tag%}
     </aside>
 {% endblock %}
 

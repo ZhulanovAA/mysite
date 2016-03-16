@@ -1,7 +1,5 @@
 from django import template
-from django.core.urlresolvers import reverse
-from django.db import models
-from django.utils.html import format_html_join
+from django.template.loader import render_to_string
 
 from ..models import Post, Tag
 
@@ -10,16 +8,16 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=False)
-def tagcloud(user=None):
+def tagcloud(selected_tag=None, user=None):
     filters = {}
     if user:
-        url = reverse('user_info', args=[user.username])
         filters = {'post__author__username': user.username}
-    else:
-        url = reverse('posts_list')
 
-    tags = Tag.objects.filter(**filters)
-    tags = tags.annotate(count=models.Count('post'))
-    tags = tags.order_by('name').values_list('name', 'count')
-    fmt = '<li><a class="ripple-child" href="%s?tag={0}">{0} - {1}</a></li>' % url
-    return format_html_join('', fmt, tags)
+    tags = Tag.objects.filter(**filters).distinct()
+
+    context = {
+        'observed_user': user,
+        'tags': tags,
+        'selected_tag': selected_tag,
+    }
+    return render_to_string('blog/tag_cloud.html', context)

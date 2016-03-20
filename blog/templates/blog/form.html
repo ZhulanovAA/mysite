@@ -19,22 +19,24 @@
         <form action="{{ action_url }}" class="material-form" method="post" accept-charset="utf-8">
             {{ form.non_field_errors }}
             {% for field in form %}
-                {{ field.label_tag }}
-                {% if field.errors %}
-                    {{ field.errors }}
-                {% else %}
-                    <br>
-                {% endif %}
-                {% if field.id_for_label == 'id_tags' %}
-                    <div style="display: none;">
-                        {{ field }}
-                    </div>
-                    <div id="tags-chooser">
+                <div class="labeled-block">
+                    {{ field.label_tag }}
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% else %}
+                        <br>
+                    {% endif %}
+                    {% if field.id_for_label == 'id_tags' %}
+                        <div style="display: none;">
+                            {{ field }}
+                        </div>
+                        <div id="tags-chooser">
 
-                    </div>
-                {% else %}
-                    {{ field }}<br>
-                {% endif %}
+                        </div>
+                    {% else %}
+                        {{ field }}<br>
+                    {% endif %}
+                </div>
                 <br>
             {% endfor %}
             {% csrf_token %}
@@ -46,4 +48,5 @@
 {% block scripts %}
     {{ block.super }}
     <script src="{% static 'blog/scripts/tags_chooser.js' %}"></script>
+    <script src="{% static 'scripts/label_animation.js' %}"></script>
 {% endblock %}

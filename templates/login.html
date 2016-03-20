@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Вход{% endblock %}
 
@@ -13,14 +14,16 @@
         <form action="{% url 'mysite_login' %}" class="material-form" method="post" accept-charset="utf-8">
             {{ form.non_field_errors }}
             {% for field in form %}
-                {{ field.label_tag }}
-                {% if field.errors %}
-                    {{ field.errors }}
-                {% else %}
+                <div class="labeled-block">
+                    {{ field.label_tag }}
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% else %}
+                        <br>
+                    {% endif %}
+                    {{ field }}<br>
                     <br>
-                {% endif %}
-                {{ field }}<br>
-                <br>
+                </div>
             {% endfor %}
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}">
@@ -30,4 +33,9 @@
             </a>
         </form>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'scripts/label_animation.js' %}"></script>
 {% endblock %}
